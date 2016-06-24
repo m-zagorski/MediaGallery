@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.appunite.views.ForegroundImageView
+        android:id="@+id/item_fullscreen_image_thumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter" />
+
+    <com.appunite.views.CheckableImageButton
+        android:id="@+id/item_fullscreen_image_selection"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="72dp"
+        android:background="@android:color/transparent"
+        android:clickable="false"
+        android:scaleType="fitCenter"
+        android:src="@drawable/gallery_select" />
+
+</FrameLayout>

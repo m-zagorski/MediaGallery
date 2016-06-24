@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.appunite.views.SquareFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bucket_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="2dp"
+    android:layout_marginRight="2dp"
+    android:layout_marginTop="4dp"
+    android:minHeight="@dimen/com_appunite_gallery_fragment_bucket_min_size"
+    android:minWidth="@dimen/com_appunite_gallery_fragment_bucket_min_size"
+    android:transitionGroup="true"
+    tools:targetApi="lollipop">
+
+    <com.appunite.views.ForegroundSquareImageView
+        android:id="@+id/bucket_thumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        android:contentDescription="@string/com_appunite_gallery_bucket_thumbnail_content_description"
+        android:foreground="@drawable/selector_image_not_selected"
+        android:minHeight="@dimen/com_appunite_gallery_fragment_bucket_min_size"
+        android:minWidth="@dimen/com_appunite_gallery_fragment_bucket_min_size"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/semi_transparent_background"
+        android:minHeight="40dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/bucket_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingLeft="16dp"
+            android:textColor="@android:color/white"
+            tools:text="Bucket Name" />
+
+        <TextView
+            android:id="@+id/bucket_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textColor="@android:color/white"
+            tools:text="Bucket Name" />
+
+    </LinearLayout>
+
+</com.appunite.views.SquareFrameLayout>

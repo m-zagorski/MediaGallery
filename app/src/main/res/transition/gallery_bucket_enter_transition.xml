@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+    android:transitionOrdering="together">
+
+    <slide
+        android:duration="300"
+        android:slideEdge="bottom"
+        android:startDelay="100">
+        <targets>
+            <target android:excludeId="@android:id/navigationBarBackground" />
+            <target android:excludeId="@android:id/statusBarBackground" />
+            <target android:excludeId="@id/gallery_bucket_shared_view" />
+            <target android:excludeId="@id/gallery_bucket_media_toolbar" />
+            <target android:excludeId="@id/gallery_bucket_media_recycler" />
+        </targets>
+    </slide>
+
+    <fade
+        android:duration="200"
+        android:startDelay="300">
+        <targets>
+            <target android:targetId="@id/gallery_bucket_media_toolbar" />
+            <target android:targetId="@id/gallery_bucket_media_recycler" />
+        </targets>
+    </fade>
+
+</transitionSet>

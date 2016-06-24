@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Gallery fragment -->
+    <dimen name="com_appunite_gallery_fragment_bucket_min_size">150dp</dimen>
+
+    <!-- Gallery bucket fragment -->
+    <dimen name="com_appunite_gallery_bucket_fragment_min_size">115dp</dimen>
+    <dimen name="com_appunite_gallery_bucket_fragment_thumbnail">45dp</dimen>
+
+</resources>

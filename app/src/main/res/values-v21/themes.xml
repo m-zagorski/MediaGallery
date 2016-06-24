@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light" >
+        <item name="android:windowContentTransitions">false</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+    </style>
+
+    <style name="AppTheme.GalleryActivity">
+        <item name="android:windowSharedElementEnterTransition">@transition/gallery_shared_enter_transition</item>
+        <item name="android:windowExitTransition">@transition/gallery_exit_transition</item>
+        <item name="android:windowEnterTransition">@transition/gallery_enter_transition</item>
+        <item name="android:windowReenterTransition">@transition/gallery_enter_transition</item>
+    </style>
+
+    <style name="AppTheme.WhiteBlack.GalleryImagesBucketActivity">
+        <item name="android:windowSharedElementEnterTransition">@transition/gallery_bucket_shared_enter_transition</item>
+        <item name="android:windowEnterTransition">@transition/gallery_bucket_enter_transition</item>
+        <item name="android:windowReturnTransition">@transition/gallery_bucket_return_transition</item>
+    </style>
+
+    <style name="AppTheme.BlackWhite.GalleryImagesFullscreenActivity">
+        <item name="android:windowSharedElementEnterTransition">@transition/gallery_fullscreen_shared_transition</item>
+        <item name="android:windowSharedElementReturnTransition">@transition/gallery_fullscreen_shared_transition</item>
+    </style>
+
+</resources>

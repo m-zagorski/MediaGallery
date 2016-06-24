@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportHeight="24.0"
+    android:viewportWidth="24.0">
+
+    <group android:name="selection_circle">
+        <path
+            android:name="circle"
+            android:fillColor="#80000000"
+            android:pathData="
+        M0.5,12a11.5,11.5 0 1,0 23,0a11.5,11.5 0 1,0 -23,0"
+            android:strokeColor="#FFF"
+            android:strokeWidth="1" />
+
+        <path
+            android:name="tick"
+            android:pathData="
+            M 7, 11.5
+            L 11, 16
+            L 18, 9
+        "
+            android:strokeColor="#00FFFFFF"
+            android:strokeWidth="2.55" />
+
+    </group>
+
+</vector>

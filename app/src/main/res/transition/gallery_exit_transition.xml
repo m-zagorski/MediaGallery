@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+    android:transitionOrdering="together">
+
+    <slide
+        android:duration="300"
+        android:slideEdge="bottom">
+        <targets>
+            <target android:excludeId="@android:id/navigationBarBackground" />
+            <target android:excludeId="@android:id/statusBarBackground" />
+            <target android:excludeId="@id/gallery_toolbar" />
+            <target android:excludeId="@id/gallery_tab_layout" />
+            <target android:excludeId="@id/gallery_transition_view" />
+            <target android:excludeId="@id/gallery_pager" />
+            <target android:excludeId="@id/bucket_layout" />
+        </targets>
+    </slide>
+
+    <fade
+        android:duration="200"
+        android:fadingMode="fade_out">
+        <targets>
+            <target android:targetId="@id/gallery_tab_layout" />
+        </targets>
+    </fade>
+
+    <explode>
+        <targets>
+            <target android:targetId="@id/bucket_layout" />
+        </targets>
+    </explode>
+
+</transitionSet>

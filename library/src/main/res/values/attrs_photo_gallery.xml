@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PhotoGallery">
+        <attr name="photoGalleryBottomContainerBackgroundColor" format="color" />
+        <attr name="photoGalleryBottomCancelTextViewColor" format="color" />
+        <attr name="photoGalleryBottomSendTextViewColor" format="color" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,27 @@
+<resources>
+    <string name="com_appunite_gallery_app_name">Library</string>
+    <string name="com_appunite_gallery_clip_data_description">GalleryClipData</string>
+    <string name="com_appunite_gallery_bucket_thumbnail_content_description">bucket_thumbnail</string>
+
+    <!-- Gallery Fragment -->
+    <string name="com_appunite_gallery_gallery_images">photos</string>
+    <string name="com_appunite_gallery_gallery_videos">videos</string>
+
+    <!-- Gallery Bucket Fragment -->
+    <string name="com_appunite_gallery_gallery_bucket_cancel">cancel</string>
+    <string name="com_appunite_gallery_gallery_bucket_send_disabled">send</string>
+    <string name="com_appunite_gallery_gallery_bucket_send_enabled">send (%1$d)</string>
+
+    <!-- Transition names -->
+    <string name="com_appunite_gallery_bucket_view_transition">bucket_view_transition</string>
+    <string name="com_appunite_gallery_bucket_toolbar_transition">bucket_toolbar_transition</string>
+
+    <!-- Gallery fullscreen fragment -->
+    <string name="com_appunite_gallery_fullscreen_title">%1$d of %2$d</string>
+
+    <!-- Custom folders -->
+    <string name="com_appunite_gallery_all_images">All images</string>
+    <string name="com_appunite_gallery_all_videos">All videos</string>
+
+</resources>
+

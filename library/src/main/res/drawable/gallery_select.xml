@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:constantSize="true"
+    tools:targetApi="lollipop">
+
+    <item
+        android:id="@+id/selected"
+        android:state_checked="true"
+        android:drawable="@drawable/select_selected" />
+
+    <item
+        android:id="@+id/not_selected"
+        android:drawable="@drawable/select_not_selected" />
+
+    <transition
+        android:fromId="@id/not_selected"
+        android:toId="@id/selected"
+        android:drawable="@drawable/avd_select" />
+
+    <transition
+        android:fromId="@id/selected"
+        android:toId="@id/not_selected"
+        android:drawable="@drawable/avd_unselect" />
+
+</animated-selector>

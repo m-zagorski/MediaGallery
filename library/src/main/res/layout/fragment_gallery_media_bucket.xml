@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/gallery_bucket_media_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:paddingBottom="60dp"
+        android:paddingTop="?actionBarSize"
+        app:layoutManager="android.support.v7.widget.GridLayoutManager"
+        app:spanCount="3" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/gallery_bucket_shared_view"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:transitionName="@string/com_appunite_gallery_bucket_view_transition"
+            tools:targetApi="lollipop" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/gallery_bucket_media_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:transitionName="@string/com_appunite_gallery_bucket_toolbar_transition"
+            tools:targetApi="lollipop" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/gallery_bucket_bottom_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:elevation="6dp"
+        android:minHeight="56dp"
+        android:transitionGroup="true"
+        tools:targetApi="lollipop">
+
+        <Button
+            android:id="@+id/gallery_bucket_media_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="16dp"
+            android:text="@string/com_appunite_gallery_gallery_bucket_cancel" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/gallery_bucket_media_send"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="16dp"
+            android:text="@string/com_appunite_gallery_gallery_bucket_send_disabled" />
+
+    </LinearLayout>
+
+</FrameLayout>
