@@ -10,9 +10,89 @@ buildscript {
     }
 }
 
-
 apply plugin: 'com.android.library'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+group = 'com.appunite'
+group = 'com.appunite'
+archivesBaseName = 'library'
+version = '1.0.2'
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven { url "https://jitpack.io" }
+    maven { url  "http://dl.bintray.com/mateusz/maven" }
+}
+
+ext {
+    appDescription = "Media Gallery for android"
+    appWebsiteUrl = "https://github.com/m-zagorski/media-gallery"
+    appGirUrl = 'https://github.com/m-zagorski/media-gallery.git'
+}
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                groupId 'com.appunite'
+                artifactId 'library'
+
+                name 'media-gallery'
+
+                description appDescription
+                url appWebsiteUrl
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'mateusz'
+                        name 'Mateusz Zagórski'
+                        email 'mateusz.zagorski@appunite.com'
+                    }
+                }
+                scm {
+                    connection 'scm:git:https://github.com/m-zagorski/media-gallery.git'
+                    developerConnection 'scm:git:https://github.com/m-zagorski/media-gallery.git'
+                    url appGirUrl
+                }
+            }
+        }
+    }
+}
+
+artifacts {
+}
+
+bintray {
+    user = project.ext.has("bintray.user") ? project.ext.get("bintray.user") : ""
+    key = project.ext.has("bintray.apikey") ? project.ext.get("bintray.apikey") : ""
+    configurations = ['archives']
+    pkg {
+        repo = 'maven'
+        name = archivesBaseName
+        desc = appDescription
+        userOrg = 'mateusz'
+        licenses = ['Apache-2.0']
+        websiteUrl = appWebsiteUrl
+        vcsUrl = appGirUrl
+        publish = true
+        publicDownloadNumbers = true
+        version {
+            gpg {
+                sign = true
+            }
+        }
+    }
+}
 
 repositories {
     mavenCentral()
@@ -52,13 +132,14 @@ dependencies {
     compile 'com.android.support:design:23.4.0'
     compile 'com.jakewharton.rxbinding:rxbinding:0.3.0'
     compile 'com.github.jacek-marchwicki.rx-java-extensions:rx-android-extensions:1.0.4'
-    compile 'com.google.dagger:dagger:2.4'
-    provided 'com.google.dagger:dagger-compiler:2.4'
+    compile 'com.google.dagger:dagger:2.5'
+    compile 'com.appunite:photogalleryjava:1.0.0'
+    provided 'com.google.dagger:dagger-compiler:2.5'
 
     testCompile 'junit:junit:4.12'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
     androidTestCompile 'com.android.support.test:runner:0.5'
     androidTestCompile 'com.android.support:support-annotations:23.4.0'
 
-    compile project(path: ':photogalleryjava')
+//    compile project(path: ':photogalleryjava')
 }

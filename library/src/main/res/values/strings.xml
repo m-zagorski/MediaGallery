@@ -1,5 +1,4 @@
 <resources>
-    <string name="com_appunite_gallery_app_name">Library</string>
     <string name="com_appunite_gallery_clip_data_description">GalleryClipData</string>
     <string name="com_appunite_gallery_bucket_thumbnail_content_description">bucket_thumbnail</string>
 
