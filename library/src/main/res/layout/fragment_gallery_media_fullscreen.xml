@@ -7,8 +7,8 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/gallery_media_fullscreen_pager"
         android:layout_width="match_parent"
-        android:background="@android:color/black"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@android:color/black" />
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/gallery_media_fullscreen_toolbar"
@@ -33,7 +33,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:background="?android:attr/selectableItemBackground"
-            android:text="@string/com_appunite_gallery_gallery_bucket_cancel" />
+            android:text="@string/com_appunite_gallery_gallery_bucket_cancel"
+            android:textAllCaps="true" />
 
         <Space
             android:layout_width="0dp"
@@ -46,7 +47,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:background="?android:attr/selectableItemBackground"
-            android:text="@string/com_appunite_gallery_gallery_bucket_send_disabled" />
+            android:text="@string/com_appunite_gallery_gallery_bucket_send_disabled"
+            android:textAllCaps="true" />
 
     </LinearLayout>
 

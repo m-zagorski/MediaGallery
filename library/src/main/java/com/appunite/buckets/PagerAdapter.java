@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.appunite.R;
+import com.appunite.dagger.ForActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public final class PagerAdapter extends FragmentPagerAdapter {
 
     @Inject
     public PagerAdapter(@Nonnull FragmentManager fm,
-                        @Nonnull Resources resources,
+                        @Nonnull @ForActivity Resources resources,
                         @Named("images") boolean images,
                         @Named("videos") boolean videos) {
         super(fm);

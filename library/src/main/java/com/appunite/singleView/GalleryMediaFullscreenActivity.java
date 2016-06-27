@@ -12,7 +12,6 @@ import com.appunite.R;
 import com.appunite.buckets.GalleryActivity;
 import com.appunite.dagger.GalleryActivityModule;
 import com.appunite.dagger.GalleryActivitySingleton;
-import com.appunite.dagger.GalleryAndroidImplModule;
 import com.appunite.dagger.GalleryApplicationComponent;
 import com.appunite.dagger.GalleryDatabaseModule;
 import com.appunite.rx.dagger.NetworkScheduler;
@@ -99,7 +98,7 @@ public class GalleryMediaFullscreenActivity extends GalleryBaseActivity {
     @Subcomponent(
             modules = {
                     GalleryActivityModule.class,
-                    GalleryAndroidImplModule.class,
+//                    GalleryAndroidImplModule.class,
                     GalleryDatabaseModule.class,
                     GalleryActivity.Module.class
             }
@@ -115,9 +114,9 @@ public class GalleryMediaFullscreenActivity extends GalleryBaseActivity {
         Scheduler networkScheduler();
 
         GalleryCustomFoldersProvider galleryCustomFoldersProvider();
-
+//
         ThumbnailProvider thumbnailProvider();
-
+//
     }
 
     @Nonnull

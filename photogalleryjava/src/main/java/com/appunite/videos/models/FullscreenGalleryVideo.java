@@ -1,7 +1,7 @@
 package com.appunite.videos.models;
 
 import com.appunite.rx.NonJdkKeeper;
-import com.google.auto.value.AutoValue;
+import com.appunite.rx.internal.Objects;
 
 import java.util.Set;
 
@@ -13,28 +13,37 @@ import rx.Observer;
 import rx.functions.Func1;
 import rx.subscriptions.SerialSubscription;
 
-@AutoValue
-public abstract class FullscreenGalleryVideo {
+public class FullscreenGalleryVideo {
 
     @Nonnull
-    public abstract GalleryVideo galleryVideo();
-
+    private final GalleryVideo galleryVideo;
     @Nullable
-    public abstract NonJdkKeeper thumbnailKeeper();
-
+    private final NonJdkKeeper thumbnailKeeper;
     @Nonnull
-    public abstract Observable<Boolean> selectedObservable();
-
+    private final Observable<Boolean> selectedObservable;
     @Nonnull
-    public abstract Observer<String> selectObserver();
-
+    private final Observer<String> selectObserver;
     @Nonnull
-    public abstract Observer<String> playVideoObserver();
-
+    private final Observer<String> playVideoObserver;
     @Nonnull
-    public abstract SerialSubscription subscription();
+    private final SerialSubscription subscription;
+    private final boolean triggerTransitions;
 
-    public abstract boolean triggerTransitions();
+    public FullscreenGalleryVideo(@Nonnull GalleryVideo galleryVideo,
+                                  @Nullable NonJdkKeeper thumbnailKeeper,
+                                  @Nonnull Observable<Boolean> selectedObservable,
+                                  @Nonnull Observer<String> selectObserver,
+                                  @Nonnull Observer<String> playVideoObserver,
+                                  @Nonnull SerialSubscription subscription,
+                                  boolean triggerTransitions) {
+        this.galleryVideo = galleryVideo;
+        this.thumbnailKeeper = thumbnailKeeper;
+        this.selectedObservable = selectedObservable;
+        this.selectObserver = selectObserver;
+        this.playVideoObserver = playVideoObserver;
+        this.subscription = subscription;
+        this.triggerTransitions = triggerTransitions;
+    }
 
     @Nonnull
     public static FullscreenGalleryVideo create(@Nonnull final GalleryVideo galleryVideo,
@@ -52,7 +61,59 @@ public abstract class FullscreenGalleryVideo {
                 })
                 .distinctUntilChanged();
 
-        return new AutoValue_FullscreenGalleryVideo(galleryVideo, thumbnailKeeper, currentlySelectedObservable, selectObserver, playVideoObserver, new SerialSubscription(), triggerTransitions);
+        return new FullscreenGalleryVideo(galleryVideo, thumbnailKeeper, currentlySelectedObservable, selectObserver, playVideoObserver, new SerialSubscription(), triggerTransitions);
     }
 
+    @Nonnull
+    public GalleryVideo galleryVideo() {
+        return galleryVideo;
+    }
+
+    @Nullable
+    public NonJdkKeeper thumbnailKeeper() {
+        return thumbnailKeeper;
+    }
+
+    @Nonnull
+    public Observable<Boolean> selectedObservable() {
+        return selectedObservable;
+    }
+
+    @Nonnull
+    public Observer<String> selectObserver() {
+        return selectObserver;
+    }
+
+    @Nonnull
+    public Observer<String> playVideoObserver() {
+        return playVideoObserver;
+    }
+
+    @Nonnull
+    public SerialSubscription subscription() {
+        return subscription;
+    }
+
+    public boolean triggerTransitions() {
+        return triggerTransitions;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof FullscreenGalleryVideo)) return false;
+        final FullscreenGalleryVideo that = (FullscreenGalleryVideo) o;
+        return triggerTransitions == that.triggerTransitions &&
+                Objects.equal(galleryVideo, that.galleryVideo) &&
+                Objects.equal(thumbnailKeeper, that.thumbnailKeeper) &&
+                Objects.equal(selectedObservable, that.selectedObservable) &&
+                Objects.equal(selectObserver, that.selectObserver) &&
+                Objects.equal(playVideoObserver, that.playVideoObserver) &&
+                Objects.equal(subscription, that.subscription);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(galleryVideo, thumbnailKeeper, selectedObservable, selectObserver, playVideoObserver, subscription, triggerTransitions);
+    }
 }

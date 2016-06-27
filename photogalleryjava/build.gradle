@@ -19,7 +19,7 @@ apply plugin: 'com.jfrog.bintray'
 
 group = 'com.appunite'
 archivesBaseName = 'photogalleryjava'
-version = '1.0.0'
+version = '1.0.1'
 
 ext {
     appDescription = "Media Gallery Java module for android"
@@ -33,7 +33,7 @@ publishing {
             from components.java
             groupId 'com.appunite'
             artifactId 'photogalleryjava'
-            version '1.0.0'
+            version '1.0.1'
         }
     }
 }
@@ -90,7 +90,6 @@ dependencies {
     compile "io.reactivex:rxjava:1.0.14"
     compile 'javax.annotation:jsr250-api:1.0'
     compile 'com.github.jacek-marchwicki.rx-java-extensions:rx-extensions:1.0.4'
-    compile 'com.google.auto.value:auto-value:1.2'
     compile 'org.pcollections:pcollections:2.1.2'
 
     testCompile "org.codehaus.groovy:groovy-all:2.4.1"

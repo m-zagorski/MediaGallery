@@ -26,7 +26,6 @@ import com.appunite.R;
 import com.appunite.bucket.GalleryMediaBucketActivity;
 import com.appunite.dagger.GalleryActivityModule;
 import com.appunite.dagger.GalleryActivitySingleton;
-import com.appunite.dagger.GalleryAndroidImplModule;
 import com.appunite.dagger.GalleryApplicationComponent;
 import com.appunite.dagger.GalleryDatabaseModule;
 import com.appunite.rx.dagger.NetworkScheduler;
@@ -188,7 +187,7 @@ public class GalleryActivity extends GalleryBaseActivity {
     @Subcomponent(
             modules = {
                     GalleryActivityModule.class,
-                    GalleryAndroidImplModule.class,
+//                    GalleryAndroidImplModule.class,
                     GalleryDatabaseModule.class,
                     Module.class
             }

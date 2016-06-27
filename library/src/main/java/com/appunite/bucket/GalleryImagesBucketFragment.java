@@ -11,8 +11,8 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.util.Pair;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SimpleItemAnimator;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -111,7 +111,8 @@ public class GalleryImagesBucketFragment extends BaseFragment {
         );
 
         recyclerView.setAdapter(adapter);
-        ((SimpleItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
+        recyclerView.getItemAnimator().setSupportsChangeAnimations(false);
+        ((GridLayoutManager)recyclerView.getLayoutManager()).setRecycleChildrenOnDetach(true);
 
         toolbar.setTitle(presenter.toolbarTitle());
         subscription.set(Subscriptions.from(
