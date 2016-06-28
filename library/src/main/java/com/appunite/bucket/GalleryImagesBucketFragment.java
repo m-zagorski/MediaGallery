@@ -19,7 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.appunite.BaseFragment;
+import com.appunite.BaseFragmentWithActivityResult;
 import com.appunite.R;
 import com.appunite.dagger.ForActivity;
 import com.appunite.dagger.FragmentModule;
@@ -55,7 +55,7 @@ import rx.subscriptions.Subscriptions;
 
 import static com.appunite.utils.Preconditions.checkNotNull;
 
-public class GalleryImagesBucketFragment extends BaseFragment {
+public class GalleryImagesBucketFragment extends BaseFragmentWithActivityResult {
 
     private static final String ARGS_BUCKET_NAME = "args_bucket_name";
     private static final String STATE_CURRENTLY_SELECTED = "state_currently_selected";
@@ -153,7 +153,7 @@ public class GalleryImagesBucketFragment extends BaseFragment {
                                 @SuppressWarnings("unchecked")
                                 final ActivityOptionsCompat options = ActivityOptionsCompat
                                         .makeSceneTransitionAnimation(getActivity(), Pair.create(transitionView, ViewCompat.getTransitionName(transitionView)));
-                                startActivityForResult(intent, GALLERY_FULLSCREEN_REQUEST_CODE, options.toBundle());
+                                ActivityCompat.startActivityForResult(getActivity(), intent, GALLERY_FULLSCREEN_REQUEST_CODE, options.toBundle());
                             }
                         }),
                 presenter.sendSelectedObservable()
@@ -192,7 +192,7 @@ public class GalleryImagesBucketFragment extends BaseFragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResultFix(int requestCode, int resultCode, Intent data) {
         if (requestCode == GALLERY_FULLSCREEN_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_CANCELED) {
                 final ArrayList<String> selectedData = data.getStringArrayListExtra(Consts.EXTRA_SELECTED_MEDIA);
@@ -205,6 +205,7 @@ public class GalleryImagesBucketFragment extends BaseFragment {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
+
 
     @Override
     public void onDestroyView() {
