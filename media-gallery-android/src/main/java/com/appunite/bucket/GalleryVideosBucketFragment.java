@@ -163,7 +163,7 @@ public class GalleryVideosBucketFragment extends BaseFragment {
                                 final Intent data = new Intent();
                                 data.putStringArrayListExtra(Consts.EXTRA_SELECTED_MEDIA, new ArrayList<>(strings));
                                 getActivity().setResult(Activity.RESULT_OK, data);
-                                ActivityCompat.finishAfterTransition(getActivity());
+                                getActivity().finish();
                             }
                         }),
                 presenter.closeActivityObservable()
@@ -199,7 +199,7 @@ public class GalleryVideosBucketFragment extends BaseFragment {
                 presenter.multipleSelectionObserver().onNext(new HashSet<>(selectedData));
             } else {
                 getActivity().setResult(Activity.RESULT_OK, data);
-                ActivityCompat.finishAfterTransition(getActivity());
+                getActivity().finish();
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
