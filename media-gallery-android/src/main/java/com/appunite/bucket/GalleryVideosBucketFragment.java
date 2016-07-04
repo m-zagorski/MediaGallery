@@ -11,6 +11,7 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.util.Pair;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
 import android.support.v7.widget.Toolbar;
@@ -111,6 +112,7 @@ public class GalleryVideosBucketFragment extends BaseFragment {
 
         recyclerView.setAdapter(adapter);
         ((SimpleItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
+        ((GridLayoutManager) recyclerView.getLayoutManager()).setRecycleChildrenOnDetach(true);
 
         toolbar.setTitle(presenter.toolbarTitle());
         subscription.set(Subscriptions.from(
@@ -151,7 +153,7 @@ public class GalleryVideosBucketFragment extends BaseFragment {
                                 @SuppressWarnings("unchecked")
                                 final ActivityOptionsCompat options = ActivityOptionsCompat
                                         .makeSceneTransitionAnimation(getActivity(), Pair.create(transitionView, ViewCompat.getTransitionName(transitionView)));
-                                ActivityCompat.startActivityForResult(getActivity(), intent, GALLERY_FULLSCREEN_REQUEST_CODE, options.toBundle());
+                                startActivityForResult(intent, GALLERY_FULLSCREEN_REQUEST_CODE, options.toBundle());
                             }
                         }),
                 presenter.sendSelectedObservable()

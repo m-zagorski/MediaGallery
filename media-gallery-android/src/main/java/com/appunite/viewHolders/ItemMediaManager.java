@@ -18,9 +18,7 @@ import com.appunite.rx.android.adapter.ViewHolderManager;
 import com.appunite.rx.functions.Functions1;
 import com.appunite.views.CheckableImageButton;
 import com.appunite.views.ForegroundSquareImageView;
-import com.bumptech.glide.Priority;
 import com.bumptech.glide.RequestManager;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.jakewharton.rxbinding.view.RxView;
 
 import javax.annotation.Nonnull;
@@ -88,10 +86,8 @@ public class ItemMediaManager implements ViewHolderManager {
                 thumbnail.setImageBitmap(nonJdkKeeper.element(Bitmap.class));
             } else {
                 glide.load(item.data())
-                        .priority(Priority.IMMEDIATE)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .override(thumbnail.getResources().getDimensionPixelSize(R.dimen.com_appunite_gallery_bucket_fragment_min_size), thumbnail.getResources().getDimensionPixelSize(R.dimen.com_appunite_gallery_bucket_fragment_min_size))
-                        .dontTransform()
+                        .override(thumbnail.getResources().getDimensionPixelSize(R.dimen.com_appunite_gallery_bucket_fragment_min_size),
+                                thumbnail.getResources().getDimensionPixelSize(R.dimen.com_appunite_gallery_bucket_fragment_min_size))
                         .into(thumbnail);
             }
 

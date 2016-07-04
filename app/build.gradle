@@ -3,6 +3,7 @@ buildscript {
         maven { url 'https://maven-central.storage.googleapis.com' }
         mavenCentral()
         jcenter()
+        maven { url  "http://dl.bintray.com/mateusz/maven" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.0-alpha3'
@@ -18,6 +19,7 @@ repositories {
     jcenter()
     maven { url "https://jitpack.io" }
     maven { url 'https://maven.fabric.io/public' }
+    maven { url  "http://dl.bintray.com/mateusz/maven" }
 }
 
 android {
@@ -91,5 +93,5 @@ dependencies {
     compile 'com.google.dagger:dagger:2.4'
     provided 'com.google.dagger:dagger-compiler:2.4'
 
-    compile project(path: ':library')
+    compile project(path: ':media-gallery-android')
 }

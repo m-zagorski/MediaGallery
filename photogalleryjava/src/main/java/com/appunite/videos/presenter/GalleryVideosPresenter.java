@@ -104,7 +104,9 @@ public class GalleryVideosPresenter {
 
         @Nullable
         public NonJdkKeeper thumbnailKeeper() {
-            if (bucket.thumbnail() instanceof VideoThumbnail) {
+            if (bucket.thumbnail() == null) {
+                return null;
+            } else if (bucket.thumbnail() instanceof VideoThumbnail) {
                 final VideoThumbnail thumbnail = (VideoThumbnail) bucket.thumbnail();
                 return thumbnail != null ? thumbnail.thumbnailKeeper() : null;
             } else {

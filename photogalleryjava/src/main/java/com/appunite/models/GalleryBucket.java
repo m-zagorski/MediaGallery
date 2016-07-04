@@ -1,29 +1,67 @@
 package com.appunite.models;
 
-import com.google.auto.value.AutoValue;
+import com.appunite.rx.internal.Objects;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-@AutoValue
-public abstract class GalleryBucket {
+public class GalleryBucket {
 
-    public abstract long id();
-
+    private final long id;
     @Nullable
-    public abstract String name();
-
+    private final String name;
     @Nullable
-    public abstract Thumbnail thumbnail();
+    private final Thumbnail thumbnail;
+    private final int count;
 
-    public abstract int count();
+    private GalleryBucket(long id,
+                          @Nullable String name,
+                          @Nullable Thumbnail thumbnail, int count) {
+        this.id = id;
+        this.name = name;
+        this.thumbnail = thumbnail;
+        this.count = count;
+    }
 
     @Nonnull
     public static GalleryBucket create(long id,
                                        @Nullable String name,
                                        @Nullable Thumbnail thumbnail,
                                        int count) {
-        return new AutoValue_GalleryBucket(id, name, thumbnail, count);
+        return new GalleryBucket(id, name, thumbnail, count);
     }
 
+    public long id() {
+        return id;
+    }
+
+    @Nullable
+    public String name() {
+        return name;
+    }
+
+    @Nullable
+    public Thumbnail thumbnail() {
+        return thumbnail;
+    }
+
+    public int count() {
+        return count;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof GalleryBucket)) return false;
+        final GalleryBucket that = (GalleryBucket) o;
+        return id == that.id &&
+                count == that.count &&
+                Objects.equal(name, that.name) &&
+                Objects.equal(thumbnail, that.thumbnail);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id, name, thumbnail, count);
+    }
 }

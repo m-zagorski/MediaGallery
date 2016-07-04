@@ -61,4 +61,10 @@
         <item name="android:ellipsize">end</item>
     </style>
 
+    <style name="AppTheme.GalleryActivity"/>
+
+    <style name="AppTheme.WhiteBlack.GalleryImagesBucketActivity"/>
+
+    <style name="AppTheme.BlackWhite.GalleryImagesFullscreenActivity"/>
+
 </resources>
