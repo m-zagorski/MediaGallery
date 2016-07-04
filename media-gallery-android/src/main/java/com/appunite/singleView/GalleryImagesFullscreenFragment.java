@@ -32,9 +32,7 @@ import com.appunite.utils.Consts;
 import com.appunite.utils.RxViewPagerListener;
 import com.appunite.views.CheckableImageButton;
 import com.appunite.views.ForegroundImageView;
-import com.bumptech.glide.Priority;
 import com.bumptech.glide.RequestManager;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
@@ -253,8 +251,7 @@ public class GalleryImagesFullscreenFragment extends FragmentWithBackButtonBehav
             ViewCompat.setTransitionName(thumbnail, "Position" + position);
 
             glide.load(item.galleryImage().data())
-                    .priority(Priority.IMMEDIATE)
-                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                    .override(1536, 1536)
                     .listener(new RequestListener<String, GlideDrawable>() {
                         @Override
                         public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
@@ -272,7 +269,6 @@ public class GalleryImagesFullscreenFragment extends FragmentWithBackButtonBehav
                             return false;
                         }
                     })
-                    .dontTransform()
                     .into(thumbnail);
 
             item.subscription().set(Subscriptions.from(

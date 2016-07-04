@@ -13,7 +13,6 @@ import com.appunite.rx.internal.Objects;
 
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
@@ -72,20 +71,17 @@ public class GalleryImagesFullscreenPresenter {
                 })
                 .observeOn(uiScheduler);
 
-        currentPositionObservable = bucketDao.imagesObservable()
-                .switchMap(new Func1<List<GalleryImage>, Observable<Integer>>() {
+        currentPositionObservable = dataObservable
+                .switchMap(new Func1<List<FullscreenGalleryImage>, Observable<Integer>>() {
                     @Override
-                    public Observable<Integer> call(List<GalleryImage> galleryImages) {
-                        for (int i = 0, galleryImagesSize = galleryImages.size(); i < galleryImagesSize; i++) {
-                            final GalleryImage image = galleryImages.get(i);
-                            if (Objects.equal(image.data(), currentElement)) {
+                    public Observable<Integer> call(List<FullscreenGalleryImage> fullscreenGalleryImages) {
+                        for (int i = 0; i < fullscreenGalleryImages.size(); ++i) {
+                            if (fullscreenGalleryImages.get(i).triggerTransitions())
                                 return Observable.just(i);
-                            }
                         }
                         return Observable.just(-1);
                     }
-                })
-                .observeOn(uiScheduler);
+                });
     }
 
     @Nonnull
@@ -95,12 +91,13 @@ public class GalleryImagesFullscreenPresenter {
 
     @Nonnull
     public Observable<Integer> currentPositionObservable() {
-        return Observable.combineLatest(dataObservable, currentPositionObservable, new Func2<List<FullscreenGalleryImage>, Integer, Integer>() {
-            @Override
-            public Integer call(List<FullscreenGalleryImage> fullscreenGalleryImages, Integer integer) {
-                return integer;
-            }
-        });
+        return dataObservable
+                .switchMap(new Func1<List<FullscreenGalleryImage>, Observable<? extends Integer>>() {
+                    @Override
+                    public Observable<? extends Integer> call(List<FullscreenGalleryImage> fullscreenGalleryImages) {
+                        return currentPositionObservable;
+                    }
+                });
     }
 
     @Nonnull

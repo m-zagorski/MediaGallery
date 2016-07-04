@@ -13,13 +13,14 @@ import android.support.v4.util.Pair;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SimpleItemAnimator;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.appunite.BaseFragmentWithActivityResult;
+import com.appunite.BaseFragment;
 import com.appunite.R;
 import com.appunite.dagger.ForActivity;
 import com.appunite.dagger.FragmentModule;
@@ -54,7 +55,7 @@ import rx.subscriptions.Subscriptions;
 
 import static com.appunite.utils.Preconditions.checkNotNull;
 
-public class GalleryVideosBucketFragment extends BaseFragmentWithActivityResult {
+public class GalleryVideosBucketFragment extends BaseFragment {
 
     private static final String ARGS_BUCKET_NAME = "args_bucket_name";
     private static final String STATE_CURRENTLY_SELECTED = "state_currently_selected";
@@ -110,7 +111,7 @@ public class GalleryVideosBucketFragment extends BaseFragmentWithActivityResult 
         );
 
         recyclerView.setAdapter(adapter);
-        recyclerView.getItemAnimator().setSupportsChangeAnimations(false);
+        ((SimpleItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
         ((GridLayoutManager) recyclerView.getLayoutManager()).setRecycleChildrenOnDetach(true);
 
         toolbar.setTitle(presenter.toolbarTitle());
@@ -152,7 +153,7 @@ public class GalleryVideosBucketFragment extends BaseFragmentWithActivityResult 
                                 @SuppressWarnings("unchecked")
                                 final ActivityOptionsCompat options = ActivityOptionsCompat
                                         .makeSceneTransitionAnimation(getActivity(), Pair.create(transitionView, ViewCompat.getTransitionName(transitionView)));
-                                ActivityCompat.startActivityForResult(getActivity(), intent, GALLERY_FULLSCREEN_REQUEST_CODE, options.toBundle());
+                                startActivityForResult(intent, GALLERY_FULLSCREEN_REQUEST_CODE, options.toBundle());
                             }
                         }),
                 presenter.sendSelectedObservable()
@@ -191,7 +192,7 @@ public class GalleryVideosBucketFragment extends BaseFragmentWithActivityResult 
     }
 
     @Override
-    public void onActivityResultFix(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == GALLERY_FULLSCREEN_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_CANCELED) {
                 final ArrayList<String> selectedData = data.getStringArrayListExtra(Consts.EXTRA_SELECTED_MEDIA);

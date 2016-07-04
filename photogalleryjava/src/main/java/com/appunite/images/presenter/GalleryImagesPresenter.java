@@ -105,7 +105,9 @@ public class GalleryImagesPresenter {
 
         @Nullable
         public String imageThumbnail() {
-            if (bucket.thumbnail() instanceof ImageThumbnail) {
+            if (bucket.thumbnail() == null) {
+                return null;
+            } else if (bucket.thumbnail() instanceof ImageThumbnail) {
                 final ImageThumbnail thumbnail = (ImageThumbnail) bucket.thumbnail();
                 return thumbnail != null ? thumbnail.thumbnailUrl() : null;
             } else {

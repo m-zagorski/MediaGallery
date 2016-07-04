@@ -86,7 +86,8 @@ public class ItemMediaManager implements ViewHolderManager {
                 thumbnail.setImageBitmap(nonJdkKeeper.element(Bitmap.class));
             } else {
                 glide.load(item.data())
-//                        .override(thumbnail.getResources().getDimensionPixelSize(R.dimen.com_appunite_gallery_bucket_fragment_min_size), thumbnail.getResources().getDimensionPixelSize(R.dimen.com_appunite_gallery_bucket_fragment_min_size))
+                        .override(thumbnail.getResources().getDimensionPixelSize(R.dimen.com_appunite_gallery_bucket_fragment_min_size),
+                                thumbnail.getResources().getDimensionPixelSize(R.dimen.com_appunite_gallery_bucket_fragment_min_size))
                         .into(thumbnail);
             }
 

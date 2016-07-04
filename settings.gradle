@@ -1,1 +1,1 @@
-include ':app', ':photogalleryjava', ':library'
+include ':app', ':photogalleryjava', ':media-gallery-android'

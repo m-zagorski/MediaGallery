@@ -28,7 +28,6 @@ import com.appunite.dagger.GalleryActivityModule;
 import com.appunite.dagger.GalleryActivitySingleton;
 import com.appunite.dagger.GalleryApplicationComponent;
 import com.appunite.dagger.GalleryDatabaseModule;
-import com.appunite.rx.dagger.NetworkScheduler;
 import com.appunite.rx.dagger.UiScheduler;
 import com.appunite.utils.Consts;
 import com.appunite.utils.GalleryCustomFoldersProvider;
@@ -187,7 +186,6 @@ public class GalleryActivity extends GalleryBaseActivity {
     @Subcomponent(
             modules = {
                     GalleryActivityModule.class,
-//                    GalleryAndroidImplModule.class,
                     GalleryDatabaseModule.class,
                     Module.class
             }
@@ -198,9 +196,6 @@ public class GalleryActivity extends GalleryBaseActivity {
 
         @UiScheduler
         Scheduler uiScheduler();
-
-        @NetworkScheduler
-        Scheduler networkScheduler();
 
         GalleryCustomFoldersProvider galleryCustomFoldersProvider();
     }
