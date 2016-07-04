@@ -23,7 +23,6 @@
         android:minHeight="@dimen/com_appunite_gallery_bucket_fragment_min_size"
         android:minWidth="@dimen/com_appunite_gallery_bucket_fragment_min_size"
         android:scaleType="centerCrop"
-        android:stateListAnimator="@animator/raise"
         tools:background="@android:color/white" />
 
     <com.appunite.views.CheckableImageButton
@@ -31,9 +30,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_margin="6dp"
         android:background="@android:color/transparent"
         android:elevation="2dp"
+        android:paddingBottom="12dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="6dp"
+        android:paddingTop="6dp"
         android:src="@drawable/gallery_select" />
 
 </com.appunite.views.SquareFrameLayout>
