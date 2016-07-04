@@ -160,7 +160,7 @@ public class GalleryImagesFullscreenFragment extends FragmentWithBackButtonBehav
                                 final Intent data = new Intent();
                                 data.putStringArrayListExtra(Consts.EXTRA_SELECTED_MEDIA, new ArrayList<>(strings));
                                 getActivity().setResult(Activity.RESULT_OK, data);
-                                ActivityCompat.finishAfterTransition(getActivity());
+                                getActivity().finish();
                             }
                         }),
                 presenter.closeActivityObservable()

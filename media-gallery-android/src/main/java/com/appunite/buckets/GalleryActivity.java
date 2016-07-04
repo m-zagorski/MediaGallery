@@ -28,6 +28,7 @@ import com.appunite.dagger.GalleryActivityModule;
 import com.appunite.dagger.GalleryActivitySingleton;
 import com.appunite.dagger.GalleryApplicationComponent;
 import com.appunite.dagger.GalleryDatabaseModule;
+import com.appunite.presenter.GalleryActivityPresenter;
 import com.appunite.rx.dagger.UiScheduler;
 import com.appunite.utils.Consts;
 import com.appunite.utils.GalleryCustomFoldersProvider;
@@ -43,6 +44,7 @@ import dagger.Provides;
 import dagger.Subcomponent;
 import rx.Scheduler;
 
+import static com.appunite.utils.Preconditions.checkNotNull;
 import static com.appunite.utils.Preconditions.checkState;
 
 public class GalleryActivity extends GalleryBaseActivity {
@@ -54,6 +56,8 @@ public class GalleryActivity extends GalleryBaseActivity {
 
     @Inject
     PagerAdapter adapter;
+    @Inject
+    GalleryActivityPresenter presenter;
 
     private Toolbar toolbar;
     private View transitionView;
@@ -79,8 +83,7 @@ public class GalleryActivity extends GalleryBaseActivity {
         toolbar = (Toolbar) findViewById(R.id.gallery_toolbar);
         transitionView = findViewById(R.id.gallery_transition_view);
 
-        final Bundle extras = getIntent().getExtras();
-        toolbar.setTitle(extras.getString(EXTRA_GALLERY_ACTIVITY_NAME));
+        toolbar.setTitle(presenter.title());
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,6 +94,7 @@ public class GalleryActivity extends GalleryBaseActivity {
         assert pager != null;
         assert tabLayout != null;
 
+        tabLayout.setVisibility(presenter.tabsVisibility() ? View.VISIBLE : View.GONE);
         pager.setAdapter(adapter);
         tabLayout.setupWithViewPager(pager);
     }
@@ -102,7 +106,8 @@ public class GalleryActivity extends GalleryBaseActivity {
 
     void startBucketActivity(@Nonnull String bucketName, boolean videos) {
         final ActivityOptionsCompat options = sharedElementActivityOptions();
-        ActivityCompat.startActivityForResult(this, GalleryMediaBucketActivity.newIntent(this, bucketName, videos), GALLERY_REQUEST_CODE, options.toBundle());
+        final Intent intent = GalleryMediaBucketActivity.newIntent(this, bucketName, videos);
+        ActivityCompat.startActivityForResult(this, intent, GALLERY_REQUEST_CODE, options.toBundle());
     }
 
     @Nonnull
@@ -167,8 +172,10 @@ public class GalleryActivity extends GalleryBaseActivity {
 
     @Nonnull
     @Override
-    public BaseActivityComponent inject(@Nonnull GalleryApplicationComponent applicationComponent, @Nonnull GalleryActivityModule galleryActivityModule) {
+    public BaseActivityComponent inject(@Nonnull GalleryApplicationComponent applicationComponent,
+                                        @Nonnull GalleryActivityModule galleryActivityModule) {
         final Bundle extras = getIntent().getExtras();
+        final String title = extras.getString(EXTRA_GALLERY_ACTIVITY_NAME);
         final boolean images = extras.getBoolean(EXTRA_HAS_IMAGES);
         final boolean videos = extras.getBoolean(EXTRA_HAS_VIDEOS);
 
@@ -177,7 +184,7 @@ public class GalleryActivity extends GalleryBaseActivity {
         }
 
         component = applicationComponent.plus(new GalleryActivityModule(this),
-                new Module(getSupportFragmentManager(), images, videos));
+                new Module(getSupportFragmentManager(), title, images, videos));
         component.inject(this);
         return component;
     }
@@ -210,12 +217,16 @@ public class GalleryActivity extends GalleryBaseActivity {
 
         @Nonnull
         private final FragmentManager fragmentManager;
+        @Nonnull
+        private final String title;
         private final boolean images;
         private final boolean videos;
 
         Module(@Nonnull FragmentManager fragmentManager,
+               @Nonnull String title,
                boolean images, boolean videos) {
             this.fragmentManager = fragmentManager;
+            this.title = checkNotNull(title);
             this.images = images;
             this.videos = videos;
         }
@@ -224,6 +235,12 @@ public class GalleryActivity extends GalleryBaseActivity {
         @Nonnull
         public FragmentManager fragmentManager() {
             return fragmentManager;
+        }
+
+        @Provides
+        @Named("title")
+        public String title() {
+            return title;
         }
 
         @Provides
