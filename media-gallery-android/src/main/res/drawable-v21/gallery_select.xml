@@ -6,21 +6,21 @@
 
     <item
         android:id="@+id/selected"
-        android:state_checked="true"
-        android:drawable="@drawable/select_selected" />
+        android:drawable="@drawable/select_selected"
+        android:state_checked="true" />
 
     <item
         android:id="@+id/not_selected"
         android:drawable="@drawable/select_not_selected" />
 
     <transition
+        android:drawable="@drawable/avd_select"
         android:fromId="@id/not_selected"
-        android:toId="@id/selected"
-        android:drawable="@drawable/avd_select" />
+        android:toId="@id/selected" />
 
     <transition
+        android:drawable="@drawable/avd_unselect"
         android:fromId="@id/selected"
-        android:toId="@id/not_selected"
-        android:drawable="@drawable/avd_unselect" />
+        android:toId="@id/not_selected" />
 
 </animated-selector>

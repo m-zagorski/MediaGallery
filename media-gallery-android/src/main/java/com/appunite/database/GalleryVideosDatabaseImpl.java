@@ -130,7 +130,7 @@ public class GalleryVideosDatabaseImpl implements GalleryVideosDao.GalleryVideos
             if (cursor.moveToFirst()) {
                 final long bucketId = cursor.getLong(0);
                 final Bitmap thumbnail = MediaStore.Video.Thumbnails.getThumbnail(contentResolver, bucketId, MediaStore.Video.Thumbnails.MINI_KIND, thumbnailOptions);
-                return TotalCountWithThumbnail.create(VideoThumbnail.create(new NonJdkKeeper(thumbnail)), cursor.getCount());
+                return TotalCountWithThumbnail.create(VideoThumbnail.create(thumbnail != null ? new NonJdkKeeper(thumbnail) : null), cursor.getCount());
             }
             return TotalCountWithThumbnail.create(null, 0);
         } finally {
