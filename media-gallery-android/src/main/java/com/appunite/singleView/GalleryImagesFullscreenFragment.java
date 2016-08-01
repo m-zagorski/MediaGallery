@@ -25,6 +25,7 @@ import com.appunite.dagger.FragmentModule;
 import com.appunite.dagger.GalleryFragmentSingleton;
 import com.appunite.images.models.FullscreenGalleryImage;
 import com.appunite.images.presenter.GalleryImagesFullscreenPresenter;
+import com.appunite.rx.android.MyAndroidSchedulers;
 import com.appunite.rx.android.widget.RxToolbarMore;
 import com.appunite.rx.functions.BothParams;
 import com.appunite.rx.functions.Functions2;
@@ -33,15 +34,13 @@ import com.appunite.utils.RxViewPagerListener;
 import com.appunite.views.CheckableImageButton;
 import com.appunite.views.ForegroundImageView;
 import com.bumptech.glide.RequestManager;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.jakewharton.rxbinding.view.RxView;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
@@ -252,26 +251,19 @@ public class GalleryImagesFullscreenFragment extends FragmentWithBackButtonBehav
 
             glide.load(item.galleryImage().data())
                     .override(1536, 1536)
-                    .listener(new RequestListener<String, GlideDrawable>() {
-                        @Override
-                        public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                            if (item.triggerTransitions()) {
-                                ActivityCompat.startPostponedEnterTransition(getActivity());
-                            }
-                            return false;
-                        }
-
-                        @Override
-                        public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                            if (item.triggerTransitions()) {
-                                ActivityCompat.startPostponedEnterTransition(getActivity());
-                            }
-                            return false;
-                        }
-                    })
                     .into(thumbnail);
 
             item.subscription().set(Subscriptions.from(
+                    Observable.interval(100, TimeUnit.MILLISECONDS, MyAndroidSchedulers.mainThread())
+                            .first()
+                            .subscribe(new Action1<Object>() {
+                                @Override
+                                public void call(Object o) {
+                                    if (item.triggerTransitions()) {
+                                        ActivityCompat.startPostponedEnterTransition(getActivity());
+                                    }
+                                }
+                            }),
                     item.selectedObservable()
                             .subscribe(new Action1<Boolean>() {
                                 @Override

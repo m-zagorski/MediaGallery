@@ -12,6 +12,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startActivity(GalleryActivity.newIntent(this, "Send to someone", true, false));
+        startActivity(GalleryActivity.newIntent(this, "Send to someone", true, true));
     }
 }
