@@ -102,6 +102,8 @@ android {
     }
     lintOptions {
         ignore 'InvalidPackage'
+        textOutput 'stdout'
+        textReport true
     }
     buildTypes {
         release {
