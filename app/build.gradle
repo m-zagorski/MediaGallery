@@ -29,6 +29,8 @@ android {
     }
     lintOptions {
         ignore 'InvalidPackage'
+        textOutput 'stdout'
+        textReport true
     }
     productFlavors {
         // Define separate dev and prod product flavors.
