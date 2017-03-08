@@ -3,13 +3,14 @@ package com.appunite.utils;
 
 import android.support.v4.view.ViewPager;
 
+import com.appunite.rx.android.internal.MainThreadSubscription;
+
 import javax.annotation.Nonnull;
 
 import rx.Observable;
 import rx.Subscriber;
-import rx.android.MainThreadSubscription;
 
-import static rx.android.MainThreadSubscription.verifyMainThread;
+import static com.appunite.rx.android.internal.Preconditions.checkUiThread;
 
 
 public class RxViewPagerListener {
@@ -24,7 +25,7 @@ public class RxViewPagerListener {
 
         @Override
         public void call(final Subscriber<? super Integer> subscriber) {
-            verifyMainThread();
+            checkUiThread();
 
             final ViewPager.OnPageChangeListener listener = new ViewPager.OnPageChangeListener() {
                 @Override
