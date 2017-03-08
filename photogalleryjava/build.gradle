@@ -6,7 +6,7 @@ apply plugin: 'com.jfrog.bintray'
 
 group = 'com.appunite'
 archivesBaseName = 'photogalleryjava'
-version = '1.0.5'
+version = '1.0.6'
 
 ext {
     appDescription = "Media Gallery Java module for android"
